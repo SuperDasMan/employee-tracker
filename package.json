@@ -1,0 +1,33 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "Back-end database for tracking employees within a company",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuperDasMan/employee-tracker.git"
+  },
+  "author": "Josh West",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SuperDasMan/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/SuperDasMan/employee-tracker#readme",
+  "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.8",
+    "bcrypt": "^5.0.1",
+    "console.table": "^0.10.0",
+    "express": "^4.17.3",
+    "inquirer": "^8.2.0",
+    "jest": "^27.5.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "passwordless": "^1.1.3",
+    "passwordless-mysql": "^1.0.3",
+    "passwordless-mysql-bcrypt-fix": "^1.0.3"
+  }
+}
