@@ -2,46 +2,79 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/connection');
 const inputCheck = require('../../utils/inputCheck');
+const startPrompt = require('../../server')
 
 // Get all departments
 router.get('/departments', (req, res) => {
-  const sql = `SELECT departments.*, roles.name 
-             AS role_name 
-             FROM departments 
-             LEFT JOIN roles 
-             ON departments.role_id = roles.id`;
+  const sql = `SELECT name FROM departments`;
 
-  db.query(sql, (err, rows) => {
+  db.query(sql, (err, result) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json({
-      message: 'success',
-      data: rows
-    });
+    console.table(result);
+    startPrompt();
   });
 });
 
 // Get a single department
 router.get('/department/:id', (req, res) => {
-  const sql = `SELECT departments.*, roles.name 
-             AS role_name 
-             FROM departments 
-             LEFT JOIN roles 
-             ON departments.role_id = roles.id 
-             WHERE departments.id = ?`;
+  const sql = `SELECT name FROM departments WHERE id = ?`;
   const params = [req.params.id];
 
-  db.query(sql, params, (err, row) => {
+  db.query(sql, params, (err, result) => {
     if (err) {
-      res.status(400).json({ error: err.message });
+      res.status(500).json({ error: err.message });
       return;
     }
-    res.json({
-      message: 'success',
-      data: row
-    });
+    console.table(result);
+      startPrompt();
+  });
+});
+
+// View all employees by department
+router.get('/department/:id', (req, res) => {
+  const sql = `SELECT departments.name AS "Department", employees.first_name AS "First Name", employees.last_name AS "Last Name" FROM employees JOIN roles ON employees.role_id = roles.id JOIN departments ON roles.department_id = departments.id ORDER BY departments.id`;
+  const params = [req.params.id];
+
+  db.query(sql, params, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    console.table(result);
+      startPrompt();
+  });
+});
+
+// View all employees in a single department
+router.get('/department/:id', (req, res) => {
+  const sql = `SELECT departments.name AS "Department", employees.first_name AS "First Name", employees.last_name AS "Last Name" FROM employees JOIN roles ON employees.role_id = roles.id JOIN departments ON roles.department_id = departments.id WHERE departments.id = ?`;
+  const params = [req.params.id];
+
+  db.query(sql, params, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    console.table(result);
+      startPrompt();
+  });
+});
+
+// View total budgets by department
+router.get('/department/:id', (req, res) => {
+  const sql = `SELECT departments.name AS "Department", SUM(roles.salary) AS "Total Budget" FROM roles JOIN employees ON roles.id= employees.role_id JOIN departments ON roles.department_id = departments.id GROUP BY departments.id`;
+  const params = [req.params.id];
+
+  db.query(sql, params, (err, result) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    console.table(result);
+      startPrompt();
   });
 });
 
@@ -52,42 +85,33 @@ router.delete('/department/:id', (req, res) => {
 
   db.query(sql, params, (err, result) => {
     if (err) {
-      res.statusMessage(400).json({ error: res.message });
-    } else if (!result.affectedRows) {
-      res.json({
-        message: 'department not found'
-      });
-    } else {
-      res.json({
-        message: 'deleted',
-        changes: result.affectedRows,
-        id: req.params.id
-      });
+      res.statusMessage(500).json({ error: res.message });
+      startPrompt();
     }
+    console.table(result);
+    startPrompt();
   });
 });
 
 // Create a department
 router.post('/department', ({ body }, res) => {
-  const errors = inputCheck(body, 'first_name', 'last_name', 'industry_connected');
+  const errors = inputCheck(body, 'name');
   if (errors) {
     res.status(400).json({ error: errors });
     return;
   }
 
-  const sql = `INSERT INTO departments (first_name, last_name, industry_connected)
-    VALUES (?,?,?)`;
-  const params = [body.first_name, body.last_name, body.industry_connected, body.role_id];
+  const sql = `INSERT INTO departments (name)
+    VALUES (?)`;
+  const params = [body.name];
 
   db.query(sql, params, (err, result) => {
     if (err) {
-      res.status(400).json({ error: err.message });
+      res.status(500).json({ error: err.message });
       return;
     }
-    res.json({
-      message: 'success',
-      data: body
-    });
+    console.table(result);
+    startPrompt();
   });
 });
 
@@ -99,25 +123,16 @@ router.put('/department/:id', (req, res) => {
     res.status(400).json({ error: errors });
     return;
   }
-  const sql = `UPDATE departments SET role_id = ? 
-               WHERE id = ?`;
+  const sql = `UPDATE departments SET role_id = ? WHERE id = ?`;
   const params = [req.body.role_id, req.params.id];
   
   db.query(sql, params, (err, result) => {
     if (err) {
-      res.status(400).json({ error: err.message });
-      // check if a record was found
-    } else if (!result.affectedRows) {
-      res.json({
-        message: 'Department not found'
-      });
-    } else {
-      res.json({
-        message: 'success',
-        data: req.body,
-        changes: result.affectedRows
-      });
+      res.status(500).json({ error: err.message });
+      startPrompt();
     }
+    console.table(result);
+    startPrompt();
   });
 });
 
