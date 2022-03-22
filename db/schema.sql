@@ -28,8 +28,3 @@ CREATE TABLE employees (
   CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL
 );
 
-CREATE TABLE salaries (
-  id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  role_id INTEGER NOT NULL,
-  employee_id INTEGER NOT NULL
-);

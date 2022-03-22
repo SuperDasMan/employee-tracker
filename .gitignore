@@ -1,3 +1,8 @@
+.DS_Store
+node_modules
+MySqlScripts
+.env
+
 # Logs
 logs
 *.log
