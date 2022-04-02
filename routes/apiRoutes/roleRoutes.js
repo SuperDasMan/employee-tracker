@@ -14,7 +14,7 @@ router.get('/roles', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -31,7 +31,7 @@ router.get('/roles/:title', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -47,9 +47,9 @@ router.delete('/roles/:id', (req, res) => {
       startPrompt();
     } else {
       res.json({
-          message: 'deleted',
-          changes: result.affectedRows,
-          id: req.params.id
+        message: 'deleted',
+        changes: result.affectedRows,
+        id: req.params.id,
       });
     }
   });
@@ -74,7 +74,7 @@ router.post('/roles', ({ body }, res) => {
     }
     res.json({
       message: 'success',
-      data: body
+      data: body,
     });
   });
 });
@@ -98,7 +98,7 @@ router.put('/roles/:id', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: body
+      data: body,
     });
   });
 });
@@ -113,16 +113,16 @@ router.put('/role/:department_id', (req, res) => {
   }
   const sql = `UPDATE roles SET departments_id = ? WHERE id = ?`;
   const params = [req.body.role_id, req.params.id];
-  
+
   db.query(sql, params, (err, result) => {
     if (err) {
       res.status(500).json({ error: err.message });
       startPrompt();
     } else {
       res.json({
-          message: 'success',
-          changes: result.affectedRows,
-          id: req.params.id
+        message: 'success',
+        changes: result.affectedRows,
+        id: req.params.id,
       });
     }
   });

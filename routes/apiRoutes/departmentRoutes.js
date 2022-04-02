@@ -14,7 +14,7 @@ router.get('/departments', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -31,7 +31,7 @@ router.get('/departments/:id', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -48,7 +48,7 @@ router.get('/departments', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -65,7 +65,7 @@ router.get('/departments/:id', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -82,7 +82,7 @@ router.get('/departments', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -99,7 +99,7 @@ router.get('/departments/:id', (req, res) => {
     }
     res.json({
       message: 'success',
-      data: rows
+      data: rows,
     });
   });
 });
@@ -117,7 +117,7 @@ router.delete('/departments/:id', (req, res) => {
     res.json({
       message: 'deleted',
       changes: result.affectedRows,
-      id: req.params.id
+      id: req.params.id,
     });
   });
 });
@@ -141,7 +141,7 @@ router.post('/departments', ({ body }, res) => {
     }
     res.json({
       message: 'success',
-      data: body
+      data: body,
     });
   });
 });
