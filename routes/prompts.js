@@ -478,8 +478,8 @@ function updateEmployeeManager() {
         console.log(answer, 'Hopefully going to the SQL call!');
 
         db.query(
-          `UPDATE employees SET employees.manager_id= ? WHERE employees e.id ?`,
-          [{ manager_id: answer.ManID, id: answer.employeeId }],
+          `UPDATE employees SET ? WHERE ?`,
+          [{ manager_id: answer.ManID }, { id: answer.employeeId }],
           (err, res) => {
             console.log(res, "Employee's Manager successfully updated!");
             startPrompt();
