@@ -24,13 +24,15 @@ JavaScript - ES6 - Node
 
 ## Installation
 
-Download app from [GitHub](https://github.com/SuperDasMan/employee-tracker/). Have Node.js installed. Open terminal and run `npm i express inquirer jest mysql console.table bcrypt` to establsh needed packages and then run `npm start` and use the menu to select prompts and enter information as needed.
+Download app from [GitHub](https://github.com/SuperDasMan/employee-tracker/). Have Node.js installed. Open terminal and run `npm i express inquirer jest mysql console.table dontenv bcrypt` to establsh needed packages and then run `npm start` and use the menu to select prompts and enter information as needed.
 
 ## Usage
 
 Use this app to create, read, alter, and delete departments, roles, and employee profiles within your company.
 
 View a walkthrough [video](https://drive.google.com/file/d/1VS7-xHjN3Zon9iGWFq4yZhHR7-s3ynzF/view) explaining the installation and usage of this app.
+
+Or watch this handy [gif](/assets/videos/'Employee Tracker Walkthrough.gif').
 
 ## License
 
