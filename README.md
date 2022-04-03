@@ -32,7 +32,7 @@ Use this app to create, read, alter, and delete departments, roles, and employee
 
 View a walkthrough [video](https://drive.google.com/file/d/1VS7-xHjN3Zon9iGWFq4yZhHR7-s3ynzF/view) explaining the installation and usage of this app.
 
-Or watch this handy [gif](/assets/videos/'Employee Tracker Walkthrough.gif').
+Or watch this handy [![gif](/assets/videos/'Employee Tracker Walkthrough.gif')].
 
 ## License
 
