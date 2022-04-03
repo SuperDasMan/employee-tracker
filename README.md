@@ -30,6 +30,8 @@ Download app from [GitHub](https://github.com/SuperDasMan/employee-tracker/). Ha
 
 Use this app to create, read, alter, and delete departments, roles, and employee profiles within your company.
 
+View a walkthrough [video](https://drive.google.com/file/d/1VS7-xHjN3Zon9iGWFq4yZhHR7-s3ynzF/view) explaining the installation and usage of this app.
+
 ## License
 
 ## [MIT](#license)
